@@ -1,13 +1,10 @@
-#include<iostream>
-#include<vector>
-
-using namespace std;
-
-
 class Solution {
 public:
 	int numIslands(vector<vector<char>>& grid) {
-
+		if (grid.empty())
+		{
+			return 0;
+		}
 		vector<vector<bool>> visited(grid.size(), vector<bool>(grid[0].size(), false));
 		int res = 0;
 		int rows = grid.size();
@@ -18,9 +15,8 @@ public:
 			{
 				if (visited[i][j] == false)
 				{
-					if(grid[i][j]=='1')
+					if (grid[i][j] == '1')
 					{
-						cout << "i=" << i << " j=" << j << endl;
 						visited[i][j] = true;
 						dfs(grid, visited, i, j);
 						++res;
@@ -31,29 +27,61 @@ public:
 		return res;
 
 	}
-
 	void dfs(vector<vector<char>>& grid, vector<vector<bool>>& visited, int r, int c)
 	{
-		cout << r << " " << c << endl;
-		if (r - 1 >= 0 && visited[r - 1][c] == false && grid[r - 1][c] == '1')
+		vector<pair<int, int>> points_stack;
+		do
 		{
-			visited[r - 1][c] = true
+			if (!points_stack.empty())
+			{
+				auto x = points_stack.back();
+				r = x.first;
+				c = x.second;
+				points_stack.pop_back();
+			}
+			if (r - 1 >= 0 && visited[r - 1][c] == false && grid[r - 1][c] == '1')
+			{
+				visited[r - 1][c] = true;
+				points_stack.push_back(make_pair(r - 1, c));
+			}
+			if (r + 1 < grid.size() && visited[r + 1][c] == false && grid[r + 1][c] == '1')
+			{
+				visited[r + 1][c] = true;
+				points_stack.push_back(make_pair(r + 1, c));
+			}
+			if (c - 1 >= 0 && visited[r][c - 1] == false && grid[r][c - 1] == '1')
+			{
+				visited[r][c - 1] = true;
+				points_stack.push_back(make_pair(r, c - 1));
+			}
+			if (c + 1 < grid[0].size() && visited[r][c + 1] == false && grid[r][c + 1] == '1')
+			{
+				visited[r][c + 1] = true;
+				points_stack.push_back(make_pair(r, c + 1));
+			}
+		} while (!points_stack.empty());
+
+
+
+		/*if (r - 1 >= 0 && visited[r - 1][c] == false && grid[r - 1][c] == '1')
+		{
+			visited[r - 1][c] = true;
 			dfs(grid, visited, r - 1, c);
 		}
 		if (r + 1 < grid.size() && visited[r + 1][c] == false && grid[r + 1][c] == '1')
 		{
-			visited[r + 1][c] = true
+			visited[r + 1][c] = true;
 			dfs(grid, visited, r + 1, c);
 		}
 		if (c - 1 >= 0 && visited[r][c - 1] == false && grid[r][c - 1] == '1')
 		{
-			visited[r][c - 1] = true
+			visited[r][c - 1] = true;
 			dfs(grid, visited, r, c - 1);
 		}
-		if (c + 1 < grid.size() && visited[r][c + 1] == false && grid[r][c + 1] == '1')
+		if (c + 1 < grid[0].size() && visited[r][c + 1] == false && grid[r][c + 1] == '1')
 		{
-			visited[r][c + 1] = true
+			visited[r][c + 1] = true;
 			dfs(grid, visited, r, c + 1);
-		}
+		}*/
 	}
 };
