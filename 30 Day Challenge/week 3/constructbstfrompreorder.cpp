@@ -38,7 +38,8 @@ public:
 				order.push(temp);
 
 			}
-			else {
+			else
+			{
 				while (!order.empty() && temp > order.top())
 				{
 					order_val = order.top();
