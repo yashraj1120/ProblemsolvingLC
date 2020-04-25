@@ -9,7 +9,6 @@ public:
 		int ts = 0;
 		while (s >= 0 && t >= 0)
 		{
-			//cout<<S[s]<<" "<<T[t]<<endl;
 			while (s >= 0 && (ss || S[s] == '#'))
 			{
 				if (S[s] == '#')
@@ -34,7 +33,6 @@ public:
 				}
 				t--;
 			}
-			//cout<<S[s]<<" "<<T[t]<<endl;
 			if (s >= 0 && t >= 0 && !ss && !ts)
 			{
 				if (T[t] != S[s])
@@ -46,8 +44,6 @@ public:
 			}
 		}
 
-		//cout<<"s :"<<s<<" t: "<<t<<endl;
-		int ls = s;
 		while (s >= 0)
 		{
 			if (S[s] == '#')
@@ -65,7 +61,6 @@ public:
 			s--;
 		}
 
-		int tl = t;
 		while (t >= 0)
 		{
 			if (T[t] == '#')
