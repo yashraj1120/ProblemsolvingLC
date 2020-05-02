@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-minimumpathsum",
+      "appliesTo": "minimumpathsum.cpp",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-constructBSTfromPreorder",
+      "appliesTo": "constructBSTfromPreorder.cpp",
+      "type": "launch"
+    }
+  ]
+}
